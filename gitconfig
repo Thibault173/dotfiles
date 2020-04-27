@@ -27,7 +27,7 @@
   sweep = !git branch --merged master | grep -v 'master$' | xargs git branch -d && git remote prune origin
 
   # http://www.jukie.net/bart/blog/pimping-out-git-log
-  lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
+	lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset -20'
 
   # Serve local repo. http://coderwall.com/p/eybtga
   # Then other can access via `git clone git://#{YOUR_IP_ADDRESS}/
@@ -37,6 +37,8 @@
 
   # Removes a file from the index
   unstage = reset HEAD --
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit -25
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
 [help]
   autocorrect = 1
@@ -48,4 +50,4 @@
   mergeoptions = --no-edit
 [user]
 	email = thibault.villard@gmail.com
-	name = thibaultvillard
+	name = thibault173

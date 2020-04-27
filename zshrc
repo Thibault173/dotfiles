@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # Useful plugins for Rails development with Sublime Text
-plugins=(gitfast last-working-dir common-aliases sublime zsh-syntax-highlighting history-substring-search)
+plugins=(gitfast last-working-dir common-aliases sublime zsh-syntax-highlighting history-substring-search python)
 
 # Prevent Homebrew from reporting - https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
 export HOMEBREW_NO_ANALYTICS=1
@@ -33,3 +33,15 @@ export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
 export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
 export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
 export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
+
+ngrok_export_variable(){
+  url=`curl -s  http://localhost:4040/api/tunnels | ruby -e "require 'json' ; puts JSON.parse(ARGF.read)['tunnels'][1]['public_url'] rescue nil"`
+  if [ $url ]
+  then
+    export NGROK_URL=$url
+    echo "NGROK_URL=$NGROK_URL"
+  else
+    unset NGROK_URL
+    echo "Pas de ngrok qui tourne"
+  fi
+}

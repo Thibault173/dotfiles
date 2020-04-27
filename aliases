@@ -5,3 +5,13 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 
 # Quickly serve the current directory as HTTP
 alias serve='ruby -run -e httpd . -p 8000'  # Or python -m SimpleHTTPServer :)
+
+# Shortcuts for coding in the terminal
+alias gfix="git commit -a --amend --no-edit"
+alias gst="git status"
+alias gco="git checkout"
+alias gpom="git pull origin master"
+alias gwip="git commit -m 'WIP'"
+alias di_ips="docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
+alias db_hard_reset="rails db:drop db:create db:migrate db:seed"
+alias rc="rails c"
