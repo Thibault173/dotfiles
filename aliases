@@ -6,6 +6,41 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 # Quickly serve the current directory as HTTP
 alias serve='ruby -run -e httpd . -p 8000'  # Or python -m SimpleHTTPServer :)
 
+git_synchronyze () {
+  echo '=== git checkout master ==='
+  git checkout master && echo ''
+  echo '=== git pull origin master ==='
+  git pull origin master && echo ''
+  echo '=== git sweep ==='
+  git sweep
+  echo ''
+  echo '=== git branch ==='
+  git branch
+}
+
+git_open_folder () {
+  xdg-open ..
+}
+
+stt_folder () {
+  if [ $1 ]
+  then
+    subl "$HOME/code/thibault173/ruby/$1"
+  else
+    stt
+  fi
+}
+
+switch_project () {
+  if [ $1 ]
+  then
+    cd "$HOME/code/thibault173/ruby/$1"
+    subl .
+  else
+    echo 'Pass a project name as argument'
+  fi
+}
+
 # Shortcuts for coding in the terminal
 alias gfix="git commit -a --amend --no-edit"
 alias gst="git status"
@@ -15,3 +50,9 @@ alias gwip="git commit -m 'WIP'"
 alias di_ips="docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
 alias db_hard_reset="rails db:drop db:create db:migrate db:seed"
 alias rc="rails c"
+alias fs="ngrok_export_variable ; foreman start -c webpack=1,web=1"
+alias fs_with_jobs="ngrok_export_variable ; redis-cli FLUSHALL && foreman start"
+alias gsync="git_synchronyze"
+alias op="git_open_folder"
+alias stt="stt_folder"
+alias switch="switch_project"
